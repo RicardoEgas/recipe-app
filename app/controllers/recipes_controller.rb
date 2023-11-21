@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
   
   def index
-    @recipes = Recipe.all
+    @recipes = current_user.recipes.all
   end
 
   def new
@@ -11,6 +11,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @recipe_foods = @recipe.recipe_foods.includes(:food)
   end
 
   def create
@@ -26,6 +27,6 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description)
+    params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public)
   end
 end
