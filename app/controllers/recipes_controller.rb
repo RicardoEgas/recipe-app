@@ -14,16 +14,6 @@ class RecipesController < ApplicationController
     @recipe_foods = @recipe.recipe_foods.includes(:food)
   end
 
-  # def create
-  #   @recipe = Recipe.new(recipe_params)
-
-  #   if @recipe.save
-  #     redirect_to recipes_path, notice: 'Recipe was successfully created.'
-  #   else
-  #     render :new
-  #   end
-  # end
-
   def create
     @recipe = current_user.recipes.build(recipe_params)
 
