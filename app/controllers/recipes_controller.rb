@@ -39,11 +39,13 @@ class RecipesController < ApplicationController
     # @recipe_foods = @recipe.recipe_foods.includes(:food)
   end
 
-  private
+  def toggle_public
+    @recipe = Recipe.find(params[:id])
+    @recipe.update(public: !@recipe.public)
+    respond_to(&:turbo_stream)
+  end
 
-  # def recipe_params
-  #   params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public)
-  # end
+  private
 
   def recipe_params
     params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description)
