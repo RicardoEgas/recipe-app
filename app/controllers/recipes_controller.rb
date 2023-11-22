@@ -41,8 +41,10 @@ class RecipesController < ApplicationController
 
   def toggle_public
     @recipe = Recipe.find(params[:id])
-    @recipe.toggle!(:public)
-    redirect_back fallback_location: root_path, notice: 'Recipe status updated successfully.'
+    @recipe.update(public: !@recipe.public)
+    respond_to do |format|
+      format.turbo_stream
+    end
   end
 
   private

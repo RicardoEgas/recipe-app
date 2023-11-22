@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       patch :toggle_public
     end
   end
-  
+
   resources :public_recipes, only: [:index]
   resources :foods, only: %i[index new create destroy]
 end

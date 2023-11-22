@@ -17,13 +17,14 @@
   <div class='d-flex justify-content-between align-items-center'>
     <%= link_to "Generate shopping list", shopping_list_path(@recipe.id), class:'btn btn-secondary' %>
     <%= link_to "Add ingredient", new_recipe_recipe_food_path(@recipe.id), class:'btn btn-primary' %>
-    
-    <% if @recipe.public? %>
-      <%= link_to "Make Private", toggle_public_recipe_path(@recipe.id), method: :patch, class: 'btn btn-warning' %>
+
+    <% if @recipe.public %>
+      <%= button_to "Make Private", toggle_public_recipe_path(@recipe.id), method: :patch, class: 'btn btn-warning', remote: true %>
     <% else %>
-      <%= link_to "Make Public", toggle_public_recipe_path(@recipe.id), method: :patch, class: 'btn btn-success' %>
+      <%= button_to "Make Public", toggle_public_recipe_path(@recipe.id), method: :patch, class: 'btn btn-success', remote: true %>
     <% end %>
   </div>
 <% end %>
+
 
 
