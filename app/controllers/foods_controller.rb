@@ -17,6 +17,12 @@ class FoodsController < ApplicationController
     end
   end
 
+  def destroy
+    set_food
+    @food.destroy!
+    redirect_to foods_path, notice: 'Successfully destroyed foodlist.'
+  end
+
   private
 
   def food_params
