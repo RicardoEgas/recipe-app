@@ -1,50 +1,29 @@
 <div>
-    <ul>
-        <li>
-            <div>
-                <h2><%= @recipe.name %></h2>
-                <div>
-                    <p>Preparation time: <%= @recipe.preparation_time %></p>
-                    <p>Cooking time: <%= @recipe.cooking_time %></p>
-                    <p>Steps go here</p>
-                </div>
-            </div>
-        </li>
-    </ul>
+  <ul>
+    <li>
+      <div>
+        <h2><%= @recipe.name %></h2>
+        <div>
+          <p>Preparation time: <%= @recipe.preparation_time %></p>
+          <p>Cooking time: <%= @recipe.cooking_time %></p>
+          <p>Steps go here</p>
+        </div>
+      </div>
+    </li>
+  </ul>
 </div>
+
 <% if current_user == @recipe.user %>
   <div class='d-flex justify-content-between align-items-center'>
     <%= link_to "Generate shopping list", shopping_list_path(@recipe.id), class:'btn btn-secondary' %>
     <%= link_to "Add ingredient", new_recipe_recipe_food_path(@recipe.id), class:'btn btn-primary' %>
+    
+    <% if @recipe.public? %>
+      <%= link_to "Make Private", toggle_public_recipe_path(@recipe.id), method: :patch, class: 'btn btn-warning' %>
+    <% else %>
+      <%= link_to "Make Public", toggle_public_recipe_path(@recipe.id), method: :patch, class: 'btn btn-success' %>
+    <% end %>
   </div>
 <% end %>
 
-<table class="table">
-  <thead class="border-b">
-    <tr>
-      <th class='col'>Food</th>
-      <th class='col'>Quantity</th>
-      <th class='col'>Value</th>
-     
-        <th class='col'>Actions</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    <% @recipe_foods.each do |recipe_food| %>
-      <tr class='recipe_food'>
-        <th scope='row' ><%= recipe_food.food.name %></th>
-        <td><%= recipe_food.quantity %></td>
-        <td><%= recipe_food.food.price * recipe_food.quantity %></td>
-       
-          <td>
-            <div  class='d-flex align-items-center'>
-            <%= button_to "Delete", recipe_recipe_food_path(@recipe, recipe_food), method: :delete, class:'btn btn-danger' %>
-            <%= link_to "Edit", edit_recipe_recipe_food_path(@recipe, recipe_food), class:'btn btn-secondary' %>
-            </div>
-          </td>
-        
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
