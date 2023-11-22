@@ -1,0 +1,25 @@
+<h1>Shopping list</h1>
+<h3>Recipe: <%= @recipe.name %></h3>
+<div >
+  <p>Amount of food items to buy: <%= @recipe_data[:total_food_items] %> </p>
+  <p>Total value of food needed: $<%= @recipe_data[:total_price] %></p>
+</div>
+
+<table >
+  <thead >
+    <tr>
+      <th >Food</th>
+      <th >Quantity</th>
+      <th >Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @recipe.recipe_foods.each do |recipe_food| %>
+      <tr>
+        <th  ><%= recipe_food.food.name %></th>
+        <td  ><%= recipe_food.food.quantity %> <%= recipe_food.food.measurement_unit %></td>
+        <td  >$<%= (recipe_food.food.price*recipe_food.food.quantity).round(2) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

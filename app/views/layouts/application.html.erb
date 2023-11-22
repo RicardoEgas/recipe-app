@@ -11,10 +11,44 @@
   </head>
 
   <body>
-    <div>
+   <header>
+
+      <nav >
+        <div >
+          <div >
+            <ul >
+              <% if user_signed_in? %>
+                <li >
+                  <%= link_to "My recipes", recipes_path %>
+                </li>
+                <li >
+                  <%= link_to "My foods", foods_path %>
+                </li>
+                <li >
+                  <%= link_to "New recipe", new_recipe_path %>
+                </li>
+              <% end %>
+              <% if current_user %>
+                  <li >
+                    <%= link_to "Logout", destroy_user_session_path, method: :delete, 'data-turbo-method': :delete %>
+                  </li>
+                <% else %>
+                  <li >
+                    <%= link_to "Log in", new_user_session_path %>
+                  </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
-    </div>
-    <%= yield %>
+      <%= yield %>
+    </main>
   </body>
 </html>
+
+
+
