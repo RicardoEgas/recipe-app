@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/sign_out_user', to: 'users#sign_out_user', as: 'sign_out_user'
   devise_for :users
   get '/recipes/:recipe_id/shopping_list', to: 'recipes#shopping_list', as: 'shopping_list'
   devise_scope :user do
