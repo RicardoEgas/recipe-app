@@ -27,6 +27,9 @@
                 <li >
                   <%= link_to "New recipe", new_recipe_path %>
                 </li>
+                <li>
+                <%= link_to 'Public Recipes', public_recipes_path %>
+                </li>
               <% end %>
               <% if current_user %>
                   <li >
