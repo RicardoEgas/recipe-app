@@ -1,0 +1,25 @@
+<% if @public_recipe.empty? %>
+  <h2>There is no public recipes for now</h2>
+<% end %>
+<div>
+  <a href="<%= new_recipe_path %>">Add a Recipe</a>
+</div>
+<div>
+  <ul>
+    <% @public_recipe.each do |recipe| %>
+      <li>
+        <div>
+          <div>
+            <h2><%= link_to recipe.name, recipe_path(recipe.id) %></h2>
+            <button>
+              <%= link_to 'REMOVE', recipe_path(recipe.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+            </button>
+          </div>
+          <div>
+            <p><%= recipe.description %></p>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
