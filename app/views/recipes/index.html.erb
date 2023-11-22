@@ -1,9 +1,12 @@
 <% if @recipes.empty? %>
   <h2>There are no recipes yet</h2>
 <% end %>
-
+<% if user_signed_in? %>
+<p>Welcome, <%= current_user.name %>!</p>
+<% end %>
 <div>
   <a href="<%= new_recipe_path %>">Add a Recipe</a>
+  <%= link_to "Log Out", sign_out_user_path %>
 </div>
 
 <div>
@@ -14,7 +17,7 @@
           <div>
             <h2><%= link_to recipe.name, recipe_path(recipe) %></h2>
             <button>
-              <%= link_to 'REMOVE', recipe_path(recipe)%>
+              <%= link_to 'REMOVE', recipe_path(recipe), method: :delete, data: { "turbo-method": :delete} %>
             </button>
           </div>
           <div>
