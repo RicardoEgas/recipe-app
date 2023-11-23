@@ -1,5 +1,4 @@
 <div class="container mt-4">
-  <!-- Recipe Details -->
   <div class="d-flex justify-content-between">
     <div>
       <h2><%= @recipe.name %></h2>
@@ -10,7 +9,6 @@
       </div>
     </div>
 
-    <!-- Toggle Button -->
     <% if current_user == @recipe.user %>
       <% if @recipe.public %>
         <%= button_to "Make Private", toggle_public_recipe_path(@recipe.id), method: :patch, class: 'btn btn-warning', remote: true %>
@@ -20,7 +18,6 @@
     <% end %>
   </div>
 
-  <!-- Buttons Below -->
   <% if current_user == @recipe.user %>
     <div class="d-flex mt-3">
       <%= link_to "Generate shopping list", shopping_list_path(@recipe.id), class: 'btn btn-secondary me-5' %>
@@ -28,7 +25,6 @@
     </div>
   <% end %>
 
-  <!-- Recipe Foods Table -->
   <% if current_user == @recipe.user %>
     <table class="table mt-4">
       <thead class="border-b">
