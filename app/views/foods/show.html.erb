@@ -1,5 +1,9 @@
-<p><%= @food.name %></p>
-<p><%= @food.measurement_unit %></p>
-<p><%= @food.quantity %> <%= @food.measurement_unit %></p>
-<p>$<%= @food.price %></p>
-<%= link_to "Delete", food_path(@food.id), method: :delete%>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"><%= @food.name %></h5>
+    <p class="card-text">Measurement Unit: <%= @food.measurement_unit %></p>
+    <p class="card-text">Quantity: <%= @food.quantity %> <%= @food.measurement_unit %></p>
+    <p class="card-text">Price: $<%= @food.price %></p>
+    <%= link_to "Delete", food_path(@food.id), method: :delete, class: "btn btn-danger" %>
+  </div>
+</div>
