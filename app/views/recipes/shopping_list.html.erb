@@ -1,25 +1,27 @@
-<h1>Shopping list</h1>
-<h3>Recipe: <%= @recipe.name %></h3>
-<div >
-  <p>Amount of food items to buy: <%= @recipe_data[:total_food_items] %> </p>
-  <p>Total value of food needed: $<%= @recipe_data[:total_price] %></p>
-</div>
+<div class="container mt-4">
+  <h1 class="text-center">Shopping list</h1>
 
-<table >
-  <thead >
-    <tr>
-      <th >Food</th>
-      <th >Quantity</th>
-      <th >Price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @recipe.recipe_foods.each do |recipe_food| %>
+  <div class="d-flex justify-content-around my-4">
+    <p>Amount of food items to buy: <%= @recipe_data[:total_food_items] %> </p>
+    <p>Total value of food needed: $<%= @recipe_data[:total_price] %></p>
+  </div>
+
+  <table class="table table-bordered">
+    <thead>
       <tr>
-        <th  ><%= recipe_food.food.name %></th>
-        <td  ><%= recipe_food.food.quantity %> <%= recipe_food.food.measurement_unit %></td>
-        <td  >$<%= (recipe_food.food.price*recipe_food.food.quantity).round(2) %></td>
+        <th>Food</th>
+        <th>Quantity</th>
+        <th>Price</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @recipe.recipe_foods.each do |recipe_food| %>
+        <tr>
+          <td><%= recipe_food.food.name %></td>
+          <td><%= recipe_food.food.quantity %> <%= recipe_food.food.measurement_unit %></td>
+          <td>$<%= (recipe_food.food.price * recipe_food.food.quantity).round(2) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
