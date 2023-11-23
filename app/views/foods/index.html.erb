@@ -1,40 +1,34 @@
-<h1>My food ingredients</h1>
+<div class="container mt-4">
+<div class="d-flex justify-content-end mb-3">
+  <%= link_to 'Add Food', new_food_path, class: 'btn btn-primary shadow p-2' %>
+</div>
 
-  <%= link_to 'Add food', new_food_path, class:'btn btn-primary' %>
-
-<ul >
-  <li >
-    <div >
-      <p>Name</p>
-    </div>
-    <div >
-      <p>Measurement unit</p>
-    </div>
-    <div >
-      <p>Price</p>
-    </div>
-    <div >
-      <p>Action</p>
-    </div>
-  </li>
-  <% @foods.each_with_index do |food, i| %>
-      <li class="row align-items-center <%= i.even? ? '' : 'bg-body-secondary' %>">
-        <div class='col'>
-        <%= link_to user_food_path(current_user, food) do %>
-          <h5><%= food.name %></h5>
-        <% end %>
-        </div>
-        <div>
-          <p><%= food.measurement_unit %></p>
-        </div>
-        <div >
-          <p><%= food.price %></p>
-        </div>
-        <div >
-            <%= form_with model: food, url: food_path(food), method: :delete do |f| %>
-              <%= f.submit "Remove", class: 'btn btn-danger' %>
-            <% end %>
-        </div>
-      </li>
-  <% end %>
-</ul>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Measurement Unit</th>
+      <th>Price</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @foods.each_with_index do |food, i| %>
+      <tr class="<%= i.even? ? '' : 'bg-body-secondary' %>">
+        <td>
+          <%= link_to user_food_path(current_user, food), class: 'text-decoration-none' do %>
+            <h5><%= food.name %></h5>
+          <% end %>
+        </td>
+        <td><%= food.measurement_unit %></td>
+        <td><%= food.price %></td>
+        <td>
+          <%= form_with model: food, url: food_path(food), method: :delete do |f| %>
+            <%= f.submit "Delete", class: 'btn btn-danger' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

@@ -36,7 +36,6 @@ class RecipesController < ApplicationController
       total_food_items: @recipe.recipe_foods.size,
       total_price: @recipe.recipe_foods.sum { |recipe_food| recipe_food.food.price * recipe_food.quantity }
     }
-    # @recipe_foods = @recipe.recipe_foods.includes(:food)
   end
 
   def toggle_public

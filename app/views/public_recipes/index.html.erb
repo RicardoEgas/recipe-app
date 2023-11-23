@@ -1,25 +1,24 @@
-<% if @public_recipe.empty? %>
-  <h2>There is no public recipes for now</h2>
-<% end %>
-<div>
-  <a href="<%= new_recipe_path %>">Add a Recipe</a>
-</div>
-<div>
-  <ul>
-    <% @public_recipe.each do |recipe| %>
-      <li>
-        <div>
-          <div>
-            <h2><%= link_to recipe.name, recipe_path(recipe.id) %></h2>
-            <button>
-              <%= link_to 'REMOVE', recipe_path(recipe.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-            </button>
+<div class="container mt-4">
+  <h2 class="text-center">Public Recipes</h2>
+
+  <% if @public_recipe.empty? %>
+    <h3 class="text-center">There are no public recipes for now</h3>
+  <% else %>
+    <ul class="list-group">
+      <% @public_recipe.each do |recipe| %>
+        <li class="list-group-item">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h2><%= link_to recipe.name, recipe_path(recipe.id), class: 'text-decoration-none' %></h2>
+              <p>By: <%= current_user.name %></p>
+            </div>
+            <div>
+              <p>Total food items: <%= recipe.recipe_foods.size %></p>
+              <p>Total price: $<%= recipe.recipe_foods.sum { |recipe_food| recipe_food.food.price * recipe_food.quantity } %></p>
+            </div>
           </div>
-          <div>
-            <p><%= recipe.description %></p>
-          </div>
-        </div>
-      </li>
-    <% end %>
-  </ul>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 </div>
