@@ -44,13 +44,13 @@ RSpec.describe 'Food page', type: :system do
     click_button 'Log in'
 
     # Check if the Delete button is present
-    expect(page).to have_button('Delete', count: 2) 
+    expect(page).to have_button('Delete', count: 2)
 
     # Click the Delete button for the first food item
     first("input[type='submit'][value='Delete']").click
 
     # Check if the deleted food item is no longer present
     expect(page).not_to have_content('Food 1')
-    expect(page).to have_content('Food 2') 
+    expect(page).to have_content('Food 2')
   end
 end

@@ -47,5 +47,4 @@ RSpec.describe Food, type: :model do
       expect(@food).to_not be_valid
     end
   end
-
 end
