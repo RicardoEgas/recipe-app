@@ -23,8 +23,10 @@
         <td><%= food.measurement_unit %></td>
         <td><%= food.price %></td>
         <td>
+          <% if can? :destroy, food %>
           <%= form_with model: food, url: food_path(food), method: :delete do |f| %>
             <%= f.submit "Delete", class: 'btn btn-danger' %>
+          <% end %>
           <% end %>
         </td>
       </tr>
