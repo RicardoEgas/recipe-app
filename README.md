@@ -30,7 +30,7 @@
 
 # 📖 Blog app <a name="about-project"></a>
 
-**Recipe app** is fully functional website that will show the list of posts and empower readers to interact with them by adding comments and liking posts.
+**Recipe app** involves building a recipe-sharing web application using Ruby on Rails. The application allows users to sign up, log in, create recipes, and share them publicly.
 
 ## 🛠 Built With <a name="built-with"></a>
 
