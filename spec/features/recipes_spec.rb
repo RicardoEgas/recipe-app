@@ -27,7 +27,6 @@ RSpec.describe 'Recipe page', type: :system do
     fill_in 'Password', with: 'password'
     click_button 'Log in'
 
-
     visit recipes_path
     expect(page).to have_content('Recipe 1', wait: 5)
     expect(page).to have_content('Description 1')
