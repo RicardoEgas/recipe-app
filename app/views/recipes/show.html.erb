@@ -1,7 +1,7 @@
+<h2 class="text-center"><%= @recipe.name %></h2>
 <div class="container mt-4">
   <div class="d-flex justify-content-between">
     <div>
-      <h2><%= @recipe.name %></h2>
       <div>
         <p>Preparation time: <%= @recipe.preparation_time %></p>
         <p>Cooking time: <%= @recipe.cooking_time %></p>
@@ -19,10 +19,10 @@
   </div>
 
   <% if current_user == @recipe.user %>
-    <div class="d-flex mt-3">
-      <%= link_to "Generate shopping list", shopping_list_path(@recipe.id), class: 'btn btn-secondary me-5' %>
-      <%= link_to "Add ingredient", new_recipe_recipe_food_path(@recipe.id), class: 'btn btn-primary me-5' %>
-    </div>
+  <div class="d-flex justify-content-between mt-3">
+    <%= link_to "Generate shopping list", shopping_list_path(@recipe.id), class: 'btn btn-secondary' %>
+    <%= link_to "Add ingredient", new_recipe_recipe_food_path(@recipe.id), class: 'btn btn-primary' %>
+  </div>
   <% end %>
 
   <% if current_user == @recipe.user %>
@@ -43,8 +43,8 @@
             <td><%= recipe_food.food.price * recipe_food.quantity %></td>
             <td>
               <div class='d-flex align-items-center'>
-                <%= button_to "Delete", recipe_recipe_food_path(@recipe, recipe_food), method: :delete, class: 'btn btn-danger me-2' %>
-                <%= link_to "Edit", edit_recipe_recipe_food_path(@recipe, recipe_food), class: 'btn btn-secondary' %>
+                <%= link_to "Edit", edit_recipe_recipe_food_path(@recipe, recipe_food), class: 'btn btn-secondary me-2' %>
+                <%= button_to "Delete", recipe_recipe_food_path(@recipe, recipe_food), method: :delete, class: 'btn btn-danger' %>
               </div>
             </td>
           </tr>
