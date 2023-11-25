@@ -1,0 +1,23 @@
+<div class="container mt-4">
+  <%= form_with url: "/recipes", model: @recipe, class: 'border rounded p-3' do |form| %>
+    <div class="mb-3">
+      <%= form.label :name, class: 'form-label' %>
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :preparation_time, class: 'form-label' %>
+      <%= form.text_field :preparation_time, class: 'form-control' %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :cooking_time, class: 'form-label' %>
+      <%= form.text_field :cooking_time, class: 'form-control' %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :description, class: 'form-label' %>
+      <%= form.text_field :description, class: 'form-control' %>
+    </div>
+    <div>
+      <%= form.submit 'Create Recipe', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

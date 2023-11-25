@@ -1,0 +1,36 @@
+<div class="container mt-4">
+<div class="d-flex justify-content-end mb-3">
+  <%= link_to 'Add Food', new_food_path, class: 'btn btn-primary shadow p-2' %>
+</div>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Measurement Unit</th>
+      <th>Price</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @foods.each_with_index do |food, i| %>
+      <tr class="<%= i.even? ? '' : 'bg-body-secondary' %>">
+        <td>
+          <%= link_to user_food_path(current_user, food), class: 'text-decoration-none' do %>
+            <h5><%= food.name %></h5>
+          <% end %>
+        </td>
+        <td><%= food.measurement_unit %></td>
+        <td><%= food.price %></td>
+        <td>
+          <% if can? :destroy, food %>
+          <%= form_with model: food, url: food_path(food), method: :delete do |f| %>
+            <%= f.submit "Delete", class: 'btn btn-danger' %>
+          <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
